@@ -1,36 +1,118 @@
-Autor: Vicente Javier Bueno Gret
-Evaluación Parcial 3 – DSY1105: Desarrollo de Aplicaciones Móviles
+# 📱 AnimeForumApp
+**Evaluación Parcial 3 – DSY1105: Desarrollo de Aplicaciones Móviles**  
+**Autor:** Vicente Javier Bueno Gret
 
-Objetivo General
+---
 
-AnimeForumApp es una aplicación móvil nativa para Android, desarrollada con Kotlin y Jetpack Compose, que permite a los usuarios crear, visualizar, editar y eliminar publicaciones relacionadas con series de anime. La aplicación implementa la arquitectura MVVM, persistencia local con Room y consumo de una API externa para entregar sugerencias de anime, demostrando un dominio completo de desarrollo móvil moderno.
+## 1. 🏷 Nombre del Proyecto
+**AnimeForumApp – Aplicación móvil para gestionar publicaciones relacionadas con anime**
 
-Funcionalidades Principales
+---
 
-La aplicación ofrece un sistema completo de publicaciones que incluye creación, lectura, edición y eliminación de posts. El formulario cuenta con validaciones automáticas para asegurar la calidad de los datos ingresados. Además, se integra la API Jikan.moe para obtener sugerencias de anime en tiempo real. La aplicación permite adjuntar imágenes mediante cámara o galería y utilizar entrada por voz a través del micrófono. Los datos se guardan de forma persistente gracias a la base de datos Room. Los posts pueden ser filtrados por categoría y cada publicación incluye un sistema de calificación mediante estrellas. La interfaz está construida completamente en Jetpack Compose, siguiendo principios modernos de diseño con Material 3.
+## 2. 👤 Integrantes
+- **Vicente Javier Bueno Gret**
 
-Stack Tecnológico y Arquitectura
+---
 
-El proyecto está desarrollado en Kotlin utilizando Jetpack Compose como tecnología principal para la construcción de interfaces. Se implementa la arquitectura MVVM con ViewModel y StateFlow para el manejo de estado. La persistencia de datos se realiza con Room, mientras que las operaciones asíncronas se gestionan mediante Kotlin Coroutines. Para el consumo de la API se utiliza Retrofit o HttpURLConnection, dependiendo de la versión implementada. Opcionalmente, se puede integrar un sistema de inyección de dependencias como Hilt o Koin.
+## 3. 🚀 Funcionalidades del Proyecto
 
-Estructura del Proyecto
+### 📝 Gestión de Publicaciones (CRUD)
+- Crear publicaciones
+- Editar publicaciones
+- Eliminar publicaciones
+- Visualizar detalle de cada publicación
 
-El proyecto está organizado en módulos siguiendo el patrón MVVM:
+### 🗃 Persistencia Local con Room
+- Base de datos interna
+- DAOs, Entities y Repositorio implementado
+- Persistencia garantizada incluso al cerrar la app
 
-El módulo data contiene los modelos, el acceso a la base de datos mediante DAOs, el repositorio y los servicios de red.
+### 🌐 Integración con API Externa (Jikan.moe)
+- Obtención de sugerencias de anime en tiempo real
+- Búsqueda automatizada por texto
 
-El módulo ui contiene las pantallas desarrolladas en Jetpack Compose, junto con componentes reutilizables y el sistema de temas.
+### 🌍 API de Traducción (Google Translate API – Uso Académico)
+- Traducción automática de textos al español
+- Implementada en Kotlin usando HttpURLConnection y corrutinas
 
-El módulo viewmodel contiene la lógica de negocio y el manejo de estado que la interfaz consume.
+### 🖼 Adjuntar imágenes
+- Desde la cámara
+- Desde la galería
 
-Pasos para Ejecutar el Proyecto
+### 🎤 Entrada por voz
+- Dictado automático usando el micrófono del dispositivo
 
-Requisitos previos:
+### ⭐ Sistema de calificación
+- Rating de 1 a 5 estrellas por publicación
 
-Android Studio versión Koala 2024.1.2 o superior.
+### 🎨 Interfaz Moderna con Jetpack Compose
+- Material 3
+- Navegación por pantallas
+- Componentes reutilizables
+- Manejo de estado con ViewModel + StateFlow
 
-Kotlin versión 2.0.0 o superior.
+---
 
-Dispositivo físico o emulador con Android 8.0 (API 26) o superior.
+## 4. 🌐 Endpoints Utilizados (API Externa)
 
-Conexión a internet para la sincronización de dependencias y para el funcionamiento de la API externa.
+### 📌 4.1. API de Anime – Jikan.moe
+
+#### Endpoint principal utilizado:
+GET https://api.jikan.moe/v4/anime?q={query}&limit=10
+https://api.jikan.moe/v4/anime?q=naruto&limit=10
+
+5. ▶️ Pasos para Ejecutar el Proyecto
+   📌 5.1. Requisitos Previos
+
+Android Studio Koala 2024.1.2 o superior
+Kotlin 2.0 o superior
+Emulador o dispositivo físico Android 8.0 (API 26) o superior
+Conexión a Internet (dependencias + APIs externas)
+
+5.2. Clonar el Proyecto
+git clone https://github.com/Vicentejavier23/ForunAnime.git
+cd ForunAnime
+
+5.3. Abrir en Android Studio
+Abrir Android Studio
+File → Open
+Seleccionar carpeta del proyecto
+Esperar la sincronización de Gradle
+Ejecutar: Run → Run 'app'
+
+5.4. 🔐 Firma del APK (Release)
+El proyecto fue firmado de forma profesional para distribución.
+📌 Generación del Keystore
+keytool -genkey -v -keystore mi-app-release.keystore -alias mi-app-alias -keyalg RSA -keysize 2048 -validity 10000
+📌 Archivo key.properties
+(guardado en la raíz del proyecto)
+storePassword=********
+keyPassword=********
+keyAlias=mi-app-alias
+storeFile=mi-app-release.keystore
+📌 Configuración en app/build.gradle.kts
+val keystoreProperties = Properties().apply {
+load(FileInputStream(rootProject.file("key.properties")))
+}
+android {
+signingConfigs {
+create("release") {
+storeFile = file(keystoreProperties["storeFile"]!!)
+storePassword = keystoreProperties["storePassword"] as String
+keyAlias = keystoreProperties["keyAlias"] as String
+keyPassword = keystoreProperties["keyPassword"] as String
+}
+}
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
+        }
+    }
+}
+📌 Generación del APK firmado
+.\gradlew assembleRelease
+📁 Ubicación del APK final
+app/build/outputs/apk/release/app-release.apk
+
+se agrego carpeta llamada evidenciafirma con pantallazo sobre las configuraciones y los archivos
