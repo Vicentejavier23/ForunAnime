@@ -1,8 +1,16 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
   id("com.android.application")
   id("org.jetbrains.kotlin.android")
   id("org.jetbrains.kotlin.plugin.compose") version "2.0.20"
   id("com.google.devtools.ksp")
+}
+
+// Cargamos los datos del archivo key.properties
+val keystoreProperties = Properties().apply {
+  load(FileInputStream(rootProject.file("key.properties")))
 }
 
 android {
@@ -18,12 +26,29 @@ android {
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
+  // Configuración de firma para release
+  signingConfigs {
+    create("release") {
+      storeFile = file(keystoreProperties["storeFile"] as String)
+      storePassword = keystoreProperties["storePassword"] as String
+      keyAlias = keystoreProperties["keyAlias"] as String
+      keyPassword = keystoreProperties["keyPassword"] as String
+    }
+  }
+
+  buildTypes {
+    getByName("release") {
+      // Cuando ya estés listo para producción puedes poner true y usar proguard
+      isMinifyEnabled = false
+      signingConfig = signingConfigs.getByName("release")
+    }
+  }
+
   buildFeatures {
     compose = true
   }
 
   composeOptions {
-
     kotlinCompilerExtensionVersion = "1.6.8"
   }
 
@@ -79,12 +104,12 @@ dependencies {
   androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
   androidTestImplementation("androidx.compose.ui:ui-test-junit4")
   debugImplementation("androidx.compose.ui:ui-test-manifest")
-  implementation ("com.google.android.material:material:1.9.0")
+
+  implementation("com.google.android.material:material:1.9.0")
   implementation("androidx.compose.foundation:foundation-layout:1.6.8")
   implementation("androidx.compose.material3:material3:1.2.1")
   implementation("androidx.compose.material:material-icons-extended:1.6.8")
   implementation("io.coil-kt:coil-compose:2.6.0")
   implementation("com.squareup.retrofit2:retrofit:2.11.0")
   implementation("com.squareup.retrofit2:converter-gson:2.11.0")
-
 }
