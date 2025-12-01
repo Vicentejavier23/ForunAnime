@@ -60,6 +60,7 @@
 #### Endpoint principal utilizado:
 GET https://api.jikan.moe/v4/anime?q={query}&limit=10
 https://api.jikan.moe/v4/anime?q=naruto&limit=10
+___
 
 5. ▶️ Pasos para Ejecutar el Proyecto
    📌 5.1. Requisitos Previos
