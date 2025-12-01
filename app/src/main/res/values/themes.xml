@@ -1,0 +1,5 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.AnimeForum" parent="Theme.Material3.Dark.NoActionBar">
+        <!-- ... personalización de tu tema ... -->
+    </style>
+</resources>

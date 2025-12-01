@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "967686242394",
+    "project_id": "animeforum",
+    "storage_bucket": "animeforum.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:967686242394:android:af0ae2fb09f42f5384d863",
+        "android_client_info": {
+          "package_name": "com.animeforum.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWyiD9b_XBJQVWXFDki5zRa7CUvg_YOdc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
