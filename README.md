@@ -115,4 +115,5 @@ keyPassword = keystoreProperties["keyPassword"] as String
 📁 Ubicación del APK final
 app/build/outputs/apk/release/app-release.apk
 
+5.5. Evidencias configuración firma. 
 se agrego carpeta llamada evidenciafirma con pantallazo sobre las configuraciones y los archivos
