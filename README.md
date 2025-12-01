@@ -1,13 +1,13 @@
 AnimeForumApp
 
-Evaluación Parcial 2 – DSY1105: Desarrollo de Aplicaciones Móviles
+Evaluación Parcial 3 – DSY1105: Desarrollo de Aplicaciones Móviles
 Autor:Vicente Javier Bueno Gret  
 Proyecto: Aplicación móvil tipo foro de anime  
 Framework: Android Studio + Kotlin + Jetpack Compose  
-Arquitectura: MVVM + Room + ViewModel + StateFlow  
+Arquitectura: MVVM + Room + ViewModel + StateFlow  + api 
 
 Objetivo General
-Desarrollar una aplicación móvil nativa que permita a los usuarios crear, visualizar y eliminar publicaciones relacionadas con series de anime.  
+Desarrollar una aplicación móvil nativa que permita a los usuarios crear, editar, visualizar y eliminar publicaciones relacionadas con series de anime.  
 La app cumple con las buenas prácticas de desarrollo móvil, incorporando validaciones automáticas, animaciones, persistencia local y diseño responsive adaptado a distintos tamaños de pantalla.
 
 Funcionalidades Principales
@@ -21,6 +21,8 @@ Eliminar publicaciones | Menú expandible con animación para eliminar un post.
 Persistencia local (Room) | Base de datos local con DAO, Entities y ViewModel usando `StateFlow`.
 Modo oscuro / Material 3 | Tema basado en `Theme.Material3.Dark.NoActionBar`. |
 Animaciones Compose| Transiciones visuales suaves (`AnimatedVisibility`, `spring`, `tween`)
+Ae utilizo API| la cual sirve para realizar recomendacion de anime 
+Se integro los sensores nativos| camara, galeria para poder subir imagenes al post y tambien se integro microphone ppara que asi cuente con mas ascesibilidad al realizar el post 
 
 
 El proyecto sigue el patrón MVVM (Model-View-ViewModel)
